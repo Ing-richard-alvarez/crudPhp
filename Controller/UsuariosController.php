@@ -9,15 +9,32 @@
          
             //Creamos el objeto usuario
             $usuario = new Usuario();
-             
-            //Conseguimos todos los usuarios
-            $allusers = $usuario->getAll();
+            if(isset($_POST["name"]) && isset($_POST["password"])){
+                $usuario->setName($_POST["name"]);
+                $usuario->setPassword($_POST["password"]);
+                $login = $usuario->login();
+
+                if($login){
+                    $this->redirect("Usuarios", "dashboard");
+                }
+                   
+            }else {
+                $login = "no trae nada";
+            }
             
+
             //Cargamos la vista index y le pasamos valores
             $this->view("index",array(
-                "allusers"=>$allusers,
+                "login" => $login,
                 "Hola"    =>"Soy richard alvarez"
             ));
+            
+        }
+
+        //vista para renderizar el dashboard  
+        public function dashboard(){
+
+            $this->view("dashboard",array());
         }
 
         public function crear() {

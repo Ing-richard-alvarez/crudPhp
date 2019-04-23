@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div id="marginTopLogin" class="col-md-4 col-sm-12 p-2 shadow p-3">
-            <form>
+            <form action="<?php echo $helper->url("Usuarios","index");?>" method="POST">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Usuario</label>
                     <input type="email" class="form-control" name="name" id="name" aria-describedby="emailHelp" placeholder="Ingrese su usuario">
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

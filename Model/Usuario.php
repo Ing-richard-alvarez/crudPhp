@@ -32,6 +32,17 @@
             return $save;
  
         }
+
+        public function login(){
+            $query = "select * from users where name = '".$this->name."' AND pass = '". $this->password. "' limit 1 ";
+            $login = $this->db()->query($query);
+            if($row = $login->fetch_object()) {
+                $resultSet=$row;
+            }else{
+                $resultSet = null;
+            }
+            return $resultSet;
+        }
     }
     
 ?>
