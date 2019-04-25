@@ -33,8 +33,15 @@
 
         //vista para renderizar el dashboard  
         public function dashboard(){
+            $usuario = new Usuario();
+            $allUser = $usuario->getAll();
+            $allUserJson = $usuario->getAllJsonCiudad('municipio');
 
-            $this->view("dashboard",array());
+
+            $this->view("dashboard",array(
+                "allUsers" => $allUser,
+                "allUserJsons" => json_encode($allUserJson)
+            ));
         }
 
         public function crear() {
@@ -49,10 +56,19 @@
                     $usuario->setPassword(sha1($_POST["password"]));
                     $save=$usuario->save();
 
-                    $this->redirect("Usuarios", "index");
+                    $this->redirect("Usuarios", "dashboard");
                 }
             }
 
+        }
+
+        public function dashboardClient(){
+            
+            $this->view("clientDashboard", array(
+                
+            ));
+
+            //$this->redirect("Client", "clientDashboard");
         }
         
         public function borrar(){

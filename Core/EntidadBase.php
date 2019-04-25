@@ -23,7 +23,7 @@
         }
         
         public function getAll(){
-            $query=$this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
+            $query=$this->db->query("SELECT * FROM $this->table");
     
             while ($row = $query->fetch_object()) {
             $resultSet[]=$row;
@@ -32,6 +32,16 @@
             return $resultSet;
         }
         
+        public function getAllJsonCiudad($name){
+            //header('Content-Type: application/json');
+            $query = $this->db()->query("SELECT * FROM cities");
+            $ciudades = array();
+            while(($row =$query->fetch_array()) != NULL){
+                $ciudades[$row['id']] = $row[$name];
+            }
+            return $ciudades;
+        }
+
         public function getById($id){
             $query=$this->db->query("SELECT * FROM $this->table WHERE id=$id");
     

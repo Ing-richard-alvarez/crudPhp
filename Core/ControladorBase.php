@@ -2,7 +2,6 @@
     class ControladorBase {
 
         public function __construct() {
-        require_once 'Conectar.php';
             require_once 'EntidadBase.php';
             require_once 'ModelBase.php';
                 
@@ -14,7 +13,7 @@
              
         //Plugins y funcionalidades
             
-        public function view($vista,$datos){
+        public function view($vista,$datos){ 
             foreach ($datos as $id_assoc => $valor) {
                 ${$id_assoc} = $valor;
             }
