@@ -15,9 +15,11 @@
     //Cargamos controladores y acciones
     if(isset($_GET["Controller"])){
         $controllerObj=cargarControlador($_GET["Controller"]);
+        lanzarAccion($controllerObj);
     }else{
         $controllerObj=cargarControlador(CONTROLADOR_DEFECTO);
+        lanzarAccion($controllerObj);
     }
-    lanzarAccion($controllerObj);
+    //lanzarAccion($controllerObj);
 
 ?>

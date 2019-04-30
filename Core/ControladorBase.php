@@ -2,6 +2,7 @@
     class ControladorBase {
 
         public function __construct() {
+            require_once 'Conectar.php';
             require_once 'EntidadBase.php';
             require_once 'ModelBase.php';
                 
@@ -29,7 +30,9 @@
         }
             
         //Métodos para los controladores
-         
+        public function redirectClient($controlador=CONTROLADOR_DEFECTO_CLIENT,$accion=ACCION_DEFECTO_CLIENTE){
+            header("Location:index.php?controller=".$controlador."&action=".$accion);
+        }
         
     
     }

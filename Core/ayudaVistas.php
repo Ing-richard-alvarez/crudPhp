@@ -7,6 +7,10 @@
         }
          
         //Helpers para las vistas
+        public function urlClient($controlador='Client',$accion='clientDashboard'){
+            $urlString="index.php?controller=".$controlador."&action=".$accion;
+            return $urlString;
+        }
         
     }
 ?>

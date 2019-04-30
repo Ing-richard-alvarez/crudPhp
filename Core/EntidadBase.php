@@ -24,10 +24,15 @@
         
         public function getAll(){
             $query=$this->db->query("SELECT * FROM $this->table");
-    
-            while ($row = $query->fetch_object()) {
-            $resultSet[]=$row;
+            
+            if($query->num_rows != 0){
+                while ($row = $query->fetch_object()) {
+                    $resultSet[]=$row;
+                }
+            }else{
+                $resultSet = null;
             }
+            
             
             return $resultSet;
         }
@@ -43,12 +48,11 @@
         }
 
         public function getById($id){
-            $query=$this->db->query("SELECT * FROM $this->table WHERE id=$id");
-    
-            if($row = $query->fetch_object()) {
-            $resultSet=$row;
-            }
+            $query=$this->db->query("SELECT * FROM $this->table WHERE id=$id LIMIT 1");
             
+            if($row = $query->fetch_object()) {
+                $resultSet = $row;
+            }
             return $resultSet;
         }
         
@@ -56,7 +60,7 @@
             $query=$this->db->query("SELECT * FROM $this->table WHERE $column='$value'");
     
             while($row = $query->fetch_object()) {
-            $resultSet[]=$row;
+                $resultSet[]=$row;
             }
             
             return $resultSet;
