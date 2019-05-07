@@ -14,27 +14,38 @@
     <title>Actualizacion de datos - Clientes</title>
   </head>
   <body>
-    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Prueba Técnica</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="<?php echo $helper->urlClient("Client","dashboardClient");?>">Clientes <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="<?php  echo $helper->url("Usuarios","dashboard");?>">Usuarios</a>
+          <a class="nav-item nav-link" href="#">Salir</a>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <div class="row justify-content-md-center">
         <h3 id="marginTopLogin">Actualización de datos - Módulo clientes</h3>
       </div>
       <div class="row justify-content-md-center">
         <div  class="col-md-4 col-sm-12 p-2 shadow p-3 mt-3">
-          <form action="<?php echo $helper->url("Usuarios","crear");?>" method="POST">
+          <form action="<?php echo $helper->urlClient("Client","updateClient");?>" method="POST">
             <div class="form-group">
                 <label for="name">Código</label>
-                <input type="text" class="form-control" name="codigo" id="codigo" aria-describedby="emailHelp" placeholder="Código del cliente" value="<?php echo $clientUpdates->cod; ?>">
+                <input type="text" class="form-control" name="codigo" id="codigo" aria-describedby="emailHelp" placeholder="Código del cliente" value="<?php echo $clientUpdates->cod; ?>" required>
             </div>
             <div class="form-group">
                 <label for="password">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del cliente"  value="<?php echo $clientUpdates->name; ?>">
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del cliente"  value="<?php echo $clientUpdates->name; ?>" required required>
             </div>
             <div class="form-group">
                 <label for="password2">Ciudad</label>
-                <input type="text" class="form-control" name="ciudad" id="ciudad" placeholder="Ingrese nuevamente su contraseña"  value="<?php echo $clientUpdates->city; ?>">
+                <input type="text" class="form-control" name="ciudad" id="ciudad" placeholder="Ingrese nuevamente su contraseña"  value="<?php echo $clientUpdates->city; ?>" required>
             </div>
-            <a href="<?php echo $helper->url("Usuarios","dashboardClient");?>" class="btn btn-primary ">Regresar</a>
             <button type="submit" class="btn btn-primary ">Actualizar Usuario</button>   
           </form>
         </div>

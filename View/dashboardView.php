@@ -11,7 +11,7 @@
     <!-- style sheet customizable -->
     <link rel="stylesheet" href="./Assets/css/style.css" >
 
-    <title>Inicio de sesion - Prueba técnica</title>
+    <title>Dashboard usuarios - Prueba técnica</title>
   </head>
   <body>
     
@@ -22,9 +22,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="<?php echo $helper->url("Usuarios","dashboardClient");?>">Clientes <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="<?php echo $helper->urlClient("Client","dashboardClient");?>">Clientes <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="<?php  echo $helper->url("Usuarios","dashboard");?>">Usuarios</a>
-          <a class="nav-item nav-link" href="#">Salir</a>
+          <a class="nav-item nav-link" href="<?php  echo $helper->url("Usuarios","index");?>">Salir</a>
         </div>
       </div>
     </nav>
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-
+  
         <!-- Modal para actualizar usuarios-->
         <div class="modal fade bd-example-modal-lg""  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

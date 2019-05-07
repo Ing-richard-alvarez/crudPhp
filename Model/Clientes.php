@@ -38,6 +38,13 @@
 
             return $save;
         }
+
+        public function update($id){
+            $query = "UPDATE $this->table SET cod=$this->codigo, name=$this->nombre, city=$this->ciudad WHERE id=$id";
+            $update = $this->db()->query($query) ;
+
+            return $update;
+        }
     }
 
 ?>

@@ -5,41 +5,19 @@
             parent::__construct();
         }
         
-        public function index(){
-         
-            //Creamos el objeto usuario
-            $usuario = new Usuario();
-            if(isset($_POST["name"]) && isset($_POST["password"])){
-                $usuario->setName($_POST["name"]);
-                $usuario->setPassword($_POST["password"]);
-                $login = $usuario->login();
-
-                if($login){
-                    $this->redirect("Usuarios", "dashboard");
-                }
-                   
-            }else {
-                $login = "no trae nada";
-            }
-            
-
-            //Cargamos la vista index y le pasamos valores
-            $this->view("index",array(
-                "login" => $login,
-                "Hola"    =>"Soy richard alvarez"
-            ));
-            
-        }
 
         //vista para renderizar el dashboard  para los usuarios
         public function dashboard(){
             $usuario = new Usuario();
+            $allUserJson = $usuario->getAllJson();
+            
             $allUser = $usuario->getAll();
-            $allUserJson = $usuario->getAllJsonCiudad('municipio');
-               
+			$allUsers = $allUser;
+
             $this->view("dashboard",array(
-                "allUsers" => $allUser,
+                "allUsers" => $allUsers,
                 "allUserJsons" => json_encode($allUserJson)
+
             ));
         }
         
@@ -89,51 +67,9 @@
             $this->redirect("Usuarios","dashboard");
         }
 
-        //Función que renderiza la vista del dasboard para los clientes
-        public function dashboardClient(){
-            $cliente = new Clientes();
-            $allClient = $cliente->getAll();
-
-            $this->view("dashboardCliente", array(
-                "allClients" => $allClient
-            ));
-        }
-        
-        
-        public function actualizarCliente(){
-            if(isset($_GET["id"])){
-                $id = (int)$_GET["id"];
-                  
-                $cliente = new Clientes();
-                
-                $this->view("updateClient", array(
-                   "clientUpdates" =>  $cliente->getById($id)
-                ));
-            }
-        }
-
-        public function crearCliente() {
-        
-            if(isset($_POST["codigo"]) && isset($_POST["name"])&& isset($_POST["ciudad"])){
-                
-                $cliente = new Clientes();
-                $cliente->setCodigo($_POST["codigo"]);
-                $cliente->setNombre($_POST["name"]);
-                $cliente->setCiudad($_POST["ciudad"]);
-                $save=$cliente->save();
-                $this->redirect("Usuarios", "dashboardClient");
-            }
-
-        }
-
-        public function borrarCliente(){
-            if(isset($_GET["id"])){
-                $id = (int)$_GET["id"];
-                  
-                $cliente = new Clientes();
-                $cliente->deleteById($id);
-            }
-            $this->redirect("Usuarios","dashboardClient");
+        public function getPagination(){
+            $usuario = new Usuario();
+            
         }
     
     }

@@ -23,7 +23,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="<?php echo $helper->url("Usuarios","dashboardClient");?>">Clientes <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="<?php echo $helper->urlClient("Client","dashboardClient");?>">Clientes <span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="<?php  echo $helper->url("Usuarios","dashboard");?>">Usuarios</a>
           <a class="nav-item nav-link" href="#">Salir</a>
         </div>
@@ -52,8 +52,8 @@
                   <?php echo "<td>".$client->city."</td>"; ?> 
                     
                   <td>
-                    <a href="<?php echo $helper->url("Usuarios","actualizarCliente"); ?>&id=<?php echo $client->id; ?>"  class="btn btn-primary btn-sm">Actualizar</a>
-                    <a href="<?php echo $helper->url("Usuarios","borrarCliente"); ?>&id=<?php echo $client->id; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a href="<?php echo $helper->urlClient("Client","renderFormUpdate"); ?>&id=<?php echo $client->id; ?>"  class="btn btn-primary btn-sm">Actualizar</a>
+                    <a href="<?php echo $helper->urlClient("Client","borrarCliente"); ?>&id=<?php echo $client->id; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                   </td>
                 </tr>
               <?php 
@@ -75,7 +75,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo $helper->url("Usuarios","crearCliente");?>" method="POST">
+                <form action="<?php echo $helper->urlClient("Client","crearCliente");?>" method="POST">
                   <div class="form-row">
                     <div class="col">
                       <input type="text" id="codigo" name="codigo" class="form-control" placeholder="Código">

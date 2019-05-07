@@ -1,5 +1,7 @@
-<?php 
-    class EntidadBase {
+<?php
+use ___PHPSTORM_HELPERS\object;
+
+class EntidadBase {
 
         private $table;
         private $db;
@@ -23,7 +25,7 @@
         }
         
         public function getAll(){
-            $query=$this->db->query("SELECT * FROM $this->table");
+            $query=$this->db->query("SELECT * FROM $this->table WHERE state=1");
             
             if($query->num_rows != 0){
                 while ($row = $query->fetch_object()) {
@@ -37,12 +39,12 @@
             return $resultSet;
         }
         
-        public function getAllJsonCiudad($name){
+        public function getAllJson(){
             //header('Content-Type: application/json');
-            $query = $this->db()->query("SELECT * FROM cities");
+            $query = $this->db()->query("SELECT * FROM $this->table");
             $ciudades = array();
             while(($row =$query->fetch_array()) != NULL){
-                $ciudades[$row['id']] = $row[$name];
+                $ciudades[$row['id']] = $row['name'];
             }
             return $ciudades;
         }
@@ -67,21 +69,20 @@
         }
         
         public function deleteById($id){
-            $query=$this->db->query("DELETE FROM $this->table WHERE id=$id");
+            $query=$this->db->query("UPDATE $this->table SET state=0 WHERE id=$id");
             return $query;
         }
         
         public function deleteBy($column,$value){
-            $query=$this->db->query("DELETE FROM $this->table WHERE $column='$value'");
+            $query=$this->db->query("UPDATE $this->table SET state=0 WHERE $column='$value'");
             return $query;
         }
         
-    
-        /*
-        * Aqui podemos montarnos un monton de métodos que nos ayuden
-        * a hacer operaciones con la base de datos de la entidad
-        */
-
-        
+        public function countRegister(){
+            $query = "SELECT COUNT(*) AS total_registro FROM $this->table";
+            $result = $this->db()->query($query);
+            $rowCount = $result->num_rows;
+            
+        }
     }
 ?>
